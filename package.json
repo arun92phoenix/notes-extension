@@ -1,0 +1,55 @@
+{
+    "name": "notes-extension",
+    "displayName": "Notes extensionn",
+    "description": "Simple extension for immediate creation/edition of notes",
+    "version": "0.0.1",
+    "publisher": "arun92phoenix",
+    "engines": {
+        "vscode": "^1.5.0"
+    },
+    "categories": [
+        "Other"
+    ],
+    "activationEvents": [
+        "onCommand:notes.createNote"
+    ],
+    "main": "./out/src/extension",
+    "contributes": {
+        "commands": [
+            {
+                "command": "notes.createNote",
+                "title": "Create Note"
+            }
+        ],
+        "keybindings": [
+            {
+                "command": "notes.createNote",
+                "key": "alt+shift+n",
+                "mac": "alt+shift+n"
+            }
+        ]
+    },
+    "configuration": {
+        "type": "object",
+        "title": "Notes",
+        "properties": {
+            "notes.base": {
+                "type": "string",
+                "default": "",
+                "description": "(Mandatatory) The base directory for your notes. "
+            }
+        }
+    },
+    "scripts": {
+        "vscode:prepublish": "tsc -p ./",
+        "compile": "tsc -watch -p ./",
+        "postinstall": "node ./node_modules/vscode/bin/install"
+    },
+    "devDependencies": {
+        "typescript": "^2.0.3",
+        "vscode": "^1.0.0",
+        "mocha": "^2.3.3",
+        "@types/node": "^6.0.40",
+        "@types/mocha": "^2.2.32"
+    }
+}
