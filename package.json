@@ -13,6 +13,9 @@
     "activationEvents": [
         "onCommand:notes.createNote"
     ],
+    "author": {
+        "name": "Arun Iyer"
+    },
     "main": "./out/src/extension",
     "contributes": {
         "commands": [
