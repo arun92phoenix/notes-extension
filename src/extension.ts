@@ -4,8 +4,9 @@ import * as vscode from 'vscode';
 export function activate(context: vscode.ExtensionContext) {
     let disposable = vscode.commands.registerCommand('notes.createNote', () => {
         var notes = vscode.workspace.getConfiguration("notes");
+        var pattern = /\.[0-9a-z]+$/i;
 
-        if(notes.get("base") == null) {
+        if (notes.get("base") == null) {
             vscode.window.showErrorMessage("The notes.base property must be configured with the base folder path for all the notes");
             return;
         }
@@ -14,10 +15,17 @@ export function activate(context: vscode.ExtensionContext) {
             prompt: "Enter the name for your notes"
         };
 
+
         vscode.window.showInputBox(options).then(filename => {
             filename = filename.replace(/\s/g, '_');
             filename = filename.replace(/\\|\/|\<|\>|\:|\n|\||\?|\*/g, '-');
             filename = encodeURIComponent(filename);
+
+            var defaultExtension = notes.get("defaultExtension");
+            if (defaultExtension != null && !pattern.test(filename)) {
+                filename += "." + defaultExtension;
+            }
+
             var uri = vscode.Uri.file(notes.get("base") + "/" + filename);
             vscode.workspace.openTextDocument(uri).then(response => {
                 //vscode.window.showInformationMessage('Existing note found.');

@@ -1,8 +1,8 @@
 {
     "name": "notes-extension",
-    "displayName": "Notes extensionn",
+    "displayName": "Quick Notes",
     "description": "Simple extension for immediate creation/edition of notes",
-    "version": "0.0.1",
+    "version": "0.1.0",
     "publisher": "arun92phoenix",
     "engines": {
         "vscode": "^1.5.0"
@@ -30,16 +30,21 @@
                 "key": "alt+shift+n",
                 "mac": "alt+shift+n"
             }
-        ]
-    },
-    "configuration": {
-        "type": "object",
-        "title": "Notes",
-        "properties": {
-            "notes.base": {
-                "type": "string",
-                "default": "",
-                "description": "(Mandatatory) The base directory for your notes. "
+        ],
+        "configuration": {
+            "type": "object",
+            "title": "Notes",
+            "properties": {
+                "notes.base": {
+                    "type": "string",
+                    "default": "",
+                    "description": "(Mandatatory) The base directory for your notes. "
+                },
+                "notes.defaultExtension": {
+                    "type": "string",
+                    "default": null,
+                    "description": "The default file extension to be used it if is not provided. Leave this as null if the extension should not use a default extension."
+                }
             }
         }
     },
