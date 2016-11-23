@@ -1,4 +1,4 @@
-# notes-extension README
+# notes-extension
 
 ## Features
 
